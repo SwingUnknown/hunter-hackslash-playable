@@ -1,0 +1,32 @@
+{
+  "frameWidth": 144,
+  "frameHeight": 216,
+  "frames": 18,
+  "directions": [
+    "front",
+    "frontRight",
+    "right",
+    "backRight",
+    "back",
+    "backLeft",
+    "left",
+    "frontLeft"
+  ],
+  "dirsPerRow": 4,
+  "cols": 72,
+  "states": [
+    "idle",
+    "run",
+    "dash",
+    "light1",
+    "light2",
+    "light3",
+    "light4",
+    "heavy",
+    "skill",
+    "ultimate",
+    "hit"
+  ],
+  "rows": 22,
+  "version": "deluxe_v1"
+}

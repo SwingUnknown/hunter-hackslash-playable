@@ -1,0 +1,33 @@
+{
+  "animation": "light1",
+  "duration": 0.205,
+  "startup": 0.038,
+  "activeStart": 0.058,
+  "activeEnd": 0.108,
+  "recovery": 0.097,
+  "cancelAt": 0.118,
+  "damage": 40,
+  "range": 1.68,
+  "arcDegrees": 84,
+  "hitStop": 0.022,
+  "shake": 0.32,
+  "knockback": 3.8,
+  "stagger": 0.14,
+  "hitFlash": 0.12,
+  "lunge": 1.35,
+  "hitbox": {
+    "shape": "cone",
+    "range": 1.68,
+    "arcDegrees": 84,
+    "offset": 0.12
+  },
+  "effectEvents": [
+    { "time": 0.038, "name": "swing_start" },
+    { "time": 0.058, "name": "slash_light" },
+    { "time": 0.058, "name": "impact_light", "condition": "onHit" }
+  ],
+  "soundEvents": [
+    { "time": 0.038, "name": "swing_light" },
+    { "time": 0.058, "name": "hit_light", "condition": "onHit" }
+  ]
+}

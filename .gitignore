@@ -1,0 +1,72 @@
+# Build output
+bin/
+obj/
+native/dist/
+native/HunterHackslashNative/bin/
+native/HunterHackslashNative/obj/
+
+# Packaged builds and portable runtime bundles
+*.zip
+runtime/
+.runtime-download/
+hunter-hackslash-portable/
+
+# Legacy web prototype files, not needed for the current native build
+index.html
+package.json
+server.mjs
+start.bat
+start.ps1
+test-data.mjs
+src/
+vendor/
+docs/
+
+# Browser automation / screenshot scratch folders
+.chrome-*/
+
+# Logs and caches
+*.log
+__pycache__/
+*.pyc
+
+# Root-level preview/check images generated while iterating
+/*.png
+
+# Imported references
+reference_168/
+reference_168.zip
+
+# Old generated asset passes not used by the native build
+assets/characters/action/
+assets/characters/anim/
+assets/characters/source/
+assets/characters/*.png
+assets/characters/action8/pose_v5/
+assets/characters/action8/pose_v6/
+assets/characters/action8/*.png
+assets/characters/action8/*.json
+
+assets/enemies/action/
+assets/enemies/anim/
+assets/enemies/source/
+assets/enemies/*.png
+assets/enemies/action8/*.png
+assets/enemies/action8/*.json
+
+# Keep only current combat data for the native build
+data/*.json
+
+# Keep only the current asset-generation entry point
+tools/*.py
+
+# Keep current runtime assets
+!assets/characters/action8/deluxe_v1/
+!assets/characters/action8/deluxe_v1/**
+!assets/enemies/action8/deluxe_v1/
+!assets/enemies/action8/deluxe_v1/**
+!assets/illustrations/deluxe_v1/
+!assets/illustrations/deluxe_v1/**
+!data/attacks/
+!data/attacks/**
+!tools/generate_deluxe_v1_assets.py
