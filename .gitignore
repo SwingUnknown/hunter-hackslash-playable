@@ -43,7 +43,7 @@ assets/characters/anim/
 assets/characters/source/
 assets/characters/*.png
 assets/characters/action8/pose_v5/
-assets/characters/action8/pose_v6/
+assets/characters/action8/deluxe_v1/
 assets/characters/action8/*.png
 assets/characters/action8/*.json
 
@@ -51,8 +51,8 @@ assets/enemies/action/
 assets/enemies/anim/
 assets/enemies/source/
 assets/enemies/*.png
-assets/enemies/action8/*.png
-assets/enemies/action8/*.json
+assets/enemies/action8/deluxe_v1/
+assets/illustrations/deluxe_v1/
 
 # Keep only current combat data for the native build
 data/*.json
@@ -60,13 +60,11 @@ data/*.json
 # Keep only the current asset-generation entry point
 tools/*.py
 
-# Keep current runtime assets
-!assets/characters/action8/deluxe_v1/
-!assets/characters/action8/deluxe_v1/**
-!assets/enemies/action8/deluxe_v1/
-!assets/enemies/action8/deluxe_v1/**
-!assets/illustrations/deluxe_v1/
-!assets/illustrations/deluxe_v1/**
+# Keep source inputs needed to regenerate current runtime assets
+!assets/characters/action8/pose_v6/
+!assets/characters/action8/pose_v6/**
+!assets/enemies/action8/*.png
+!assets/enemies/action8/*.json
 !data/attacks/
 !data/attacks/**
 !tools/generate_deluxe_v1_assets.py

@@ -566,7 +566,7 @@ internal sealed class GameForm : Form
         var impactColor = ActionColor(action);
         foreach (var enemy in enemies.Where(e => e.Alive))
         {
-            if (!HitResolver.CanHit(action, player.Position, enemy)) continue;
+            if (!HitResolver.CanHit(action, player.Position, enemy.Position, enemy.Radius)) continue;
             var damage = action.Damage * (selectedCharacter == 3 ? 1.35f : selectedCharacter == 1 ? 0.92f : 1f);
             ApplyEnemyHit(enemy, damage, dir, action, impactColor);
             hits++;
@@ -855,7 +855,7 @@ internal sealed class GameForm : Form
                 {
                     action.HitDone = true;
                     enemy.Velocity += Vec2.FromAngle(action.Angle) * action.Lunge;
-                    if (HitResolver.CanHit(action, enemy.Position, player) && player.Invulnerable <= 0)
+                    if (HitResolver.CanHit(action, enemy.Position, player.Position, player.Radius) && player.Invulnerable <= 0)
                     {
                         ApplyPlayerHit(action.Damage, enemy.Position, action.Angle, action.Knockback, action.Stagger, action.HitFlash, enemy.IsBoss ? 0.34f : 0.22f, action.Shake, stage.EnemyAura);
                     }
@@ -1940,7 +1940,7 @@ internal sealed class GameForm : Form
         if (axis.Length < 0.01f) axis = new Vec2(1, 0);
         FillRotatedEllipse(g, b, w * 1.25f, w * 0.86f, Degrees(axis), Lighten(fill, 0.10f), outline, 1.5f);
         using var crease = new Pen(Color.FromArgb(88, Darken(fill, 0.35f)), Math.Max(1, w * 0.13f)) { StartCap = LineCap.Round, EndCap = LineCap.Round };
-        g.DrawLine(crease, (b - axis * w * 0.35f).Point, (b + axis * w * 0.25f).Point);
+        g.DrawLine(crease, (b - axis * w * 0.35f).ToPointF(), (b + axis * w * 0.25f).ToPointF());
     }
 
     private static void DrawArm(Graphics g, Vec2 shoulder, Vec2 elbow, Vec2 hand, float w, Color sleeve, Color skin, Color outline)
@@ -2082,17 +2082,17 @@ internal sealed class GameForm : Form
         g.FillEllipse(fillBrush, a.X - wa, a.Y - wa, wa * 2, wa * 2);
         g.FillEllipse(fillBrush, b.X - wb, b.Y - wb, wb * 2, wb * 2);
         using var shine = new Pen(Color.FromArgb(44, Color.White), Math.Max(1, Math.Min(wa, wb) * 0.15f)) { StartCap = LineCap.Round, EndCap = LineCap.Round };
-        g.DrawLine(shine, (a - n * wa * 0.34f + d * wa * 0.24f).Point, (b - n * wb * 0.22f - d * wb * 0.32f).Point);
+        g.DrawLine(shine, (a - n * wa * 0.34f + d * wa * 0.24f).ToPointF(), (b - n * wb * 0.22f - d * wb * 0.32f).ToPointF());
     }
 
     private static GraphicsPath TaperedPath(Vec2 a, Vec2 b, float wa, float wb, Vec2 n)
     {
         var path = new GraphicsPath();
         path.AddPolygon([
-            (a + n * wa).Point,
-            (b + n * wb).Point,
-            (b - n * wb).Point,
-            (a - n * wa).Point
+            (a + n * wa).ToPointF(),
+            (b + n * wb).ToPointF(),
+            (b - n * wb).ToPointF(),
+            (a - n * wa).ToPointF()
         ]);
         path.CloseFigure();
         return path;
@@ -2118,10 +2118,10 @@ internal sealed class GameForm : Form
         using var o = new SolidBrush(outline);
         using var f = new SolidBrush(fill);
         using var po = new GraphicsPath();
-        po.AddPolygon([(root - n * (halfWidth + 1.5f)).Point, tip.Point, (root + n * (halfWidth + 1.5f)).Point]);
+        po.AddPolygon([(root - n * (halfWidth + 1.5f)).ToPointF(), tip.ToPointF(), (root + n * (halfWidth + 1.5f)).ToPointF()]);
         g.FillPath(o, po);
         using var pf = new GraphicsPath();
-        pf.AddPolygon([(root - n * halfWidth).Point, tip.Point, (root + n * halfWidth).Point]);
+        pf.AddPolygon([(root - n * halfWidth).ToPointF(), tip.ToPointF(), (root + n * halfWidth).ToPointF()]);
         g.FillPath(f, pf);
     }
 
@@ -2150,7 +2150,7 @@ internal sealed class GameForm : Form
             var root = side * (u * 48f * scale) + new Vec2(0, -height * 0.86f);
             var tip = side * (u * 34f * scale + MathF.Sin(cycle + i) * 3f) - dir * (16f * scale) + new Vec2(0, -height * 0.18f + Math.Abs(u) * 10f);
             var mid = Mix(root, tip, 0.48f) - dir * 24f * scale;
-            g.DrawBezier(i % 3 == 0 ? hi : pen, root.Point, mid.Point, mid.Point, tip.Point);
+            g.DrawBezier(i % 3 == 0 ? hi : pen, root.ToPointF(), mid.ToPointF(), mid.ToPointF(), tip.ToPointF());
         }
     }
 
@@ -2163,25 +2163,25 @@ internal sealed class GameForm : Form
         g.FillEllipse(aura, hand.X - width * (0.12f + power * 0.04f), hand.Y - width * (0.09f + power * 0.04f), width * (0.24f + power * 0.08f), width * (0.16f + power * 0.08f));
         g.DrawBezier(
             glow,
-            (hand - dir * width * (0.24f + power * 0.10f) + side * width * 0.08f).Point,
-            (hand - dir * width * 0.05f - new Vec2(0, width * 0.18f)).Point,
-            (hand + dir * width * 0.16f - new Vec2(0, width * 0.16f)).Point,
-            (hand + dir * width * (0.35f + power * 0.16f) - side * width * 0.08f).Point);
+            (hand - dir * width * (0.24f + power * 0.10f) + side * width * 0.08f).ToPointF(),
+            (hand - dir * width * 0.05f - new Vec2(0, width * 0.18f)).ToPointF(),
+            (hand + dir * width * 0.16f - new Vec2(0, width * 0.16f)).ToPointF(),
+            (hand + dir * width * (0.35f + power * 0.16f) - side * width * 0.08f).ToPointF());
         g.DrawBezier(
             white,
-            (hand - dir * width * 0.12f + side * width * 0.04f).Point,
-            (hand + dir * width * 0.04f - new Vec2(0, width * 0.10f)).Point,
-            (hand + dir * width * 0.18f - new Vec2(0, width * 0.08f)).Point,
-            (hand + dir * width * (0.30f + power * 0.12f)).Point);
+            (hand - dir * width * 0.12f + side * width * 0.04f).ToPointF(),
+            (hand + dir * width * 0.04f - new Vec2(0, width * 0.10f)).ToPointF(),
+            (hand + dir * width * 0.18f - new Vec2(0, width * 0.08f)).ToPointF(),
+            (hand + dir * width * (0.30f + power * 0.12f)).ToPointF());
         if (actor.Name.Contains("Killua", StringComparison.OrdinalIgnoreCase))
         {
             for (var i = 0; i < 4; i++)
             {
                 var mid = hand + dir * (width * (0.12f + i * 0.045f)) + side * ((i - 1.5f) * width * 0.045f);
                 var end = hand + dir * (width * (0.30f + i * 0.07f)) + side * ((i - 1.5f) * width * 0.08f + MathF.Sin(elapsed * 18 + i) * 3);
-                g.DrawLine(glow, hand.Point, end.Point);
-                g.DrawLine(pen, mid.Point, end.Point);
-                g.DrawLine(white, mid.Point, end.Point);
+                g.DrawLine(glow, hand.ToPointF(), end.ToPointF());
+                g.DrawLine(pen, mid.ToPointF(), end.ToPointF());
+                g.DrawLine(white, mid.ToPointF(), end.ToPointF());
             }
         }
         else if (actor.Name.Contains("Kurapika", StringComparison.OrdinalIgnoreCase))
@@ -2191,8 +2191,8 @@ internal sealed class GameForm : Form
                 var u = i / 4f;
                 var a = hand + dir * (width * (0.12f + u * 0.38f)) + side * (MathF.Sin(u * MathF.PI * 3) * width * 0.08f);
                 var b = hand + dir * (width * (0.18f + u * 0.44f)) + side * (MathF.Sin(u * MathF.PI * 3 + 0.6f) * width * 0.08f);
-                g.DrawLine(pen, a.Point, b.Point);
-                DrawRotatedEllipseStroke(g, b.Point, width * 0.055f, width * 0.032f, Degrees(dir) + i * 72, pen, white);
+                g.DrawLine(pen, a.ToPointF(), b.ToPointF());
+                DrawRotatedEllipseStroke(g, b.ToPointF(), width * 0.055f, width * 0.032f, Degrees(dir) + i * 72, pen, white);
             }
         }
         else
@@ -2205,8 +2205,8 @@ internal sealed class GameForm : Form
                 {
                     var start = hand + side * (i * width * 0.06f);
                     var end = start + dir * width * (0.34f + power * 0.18f) - new Vec2(0, width * (0.05f + Math.Abs(i) * 0.03f));
-                    g.DrawLine(glow, start.Point, end.Point);
-                    g.DrawLine(white, start.Point, end.Point);
+                    g.DrawLine(glow, start.ToPointF(), end.ToPointF());
+                    g.DrawLine(white, start.ToPointF(), end.ToPointF());
                 }
             }
         }
@@ -2375,11 +2375,11 @@ internal sealed class GameForm : Form
                 using var fissure = new GraphicsPath();
                 var w = (4.0f + (i % 3) * 1.2f) * (1 - t);
                 fissure.AddPolygon([
-                    (originV + n * w).Point,
-                    (Mix(originV, endV, 0.58f) + n * w * 0.42f + side * MathF.Sin(e.Seed + i) * 5).Point,
-                    endV.Point,
-                    (Mix(originV, endV, 0.44f) - n * w * 0.55f).Point,
-                    (originV - n * w).Point
+                    (originV + n * w).ToPointF(),
+                    (Mix(originV, endV, 0.58f) + n * w * 0.42f + side * MathF.Sin(e.Seed + i) * 5).ToPointF(),
+                    endV.ToPointF(),
+                    (Mix(originV, endV, 0.44f) - n * w * 0.55f).ToPointF(),
+                    (originV - n * w).ToPointF()
                 ]);
                 g.FillPath(fillCrack, fissure);
                 g.DrawLine(crack, origin, end);
@@ -2827,22 +2827,4 @@ internal readonly record struct Palette(Color Skin, Color Hair, Color Jacket, Co
             ? new Palette(Color.FromArgb(205, 160, 110), Color.FromArgb(28, 34, 24), Color.FromArgb(86, 112, 48), Color.FromArgb(230, 244, 100), Color.FromArgb(24, 34, 24), Color.FromArgb(12, 18, 12), aura, Color.FromArgb(8, 12, 8))
             : new Palette(Color.FromArgb(214, 178, 140), Color.FromArgb(40, 52, 46), Color.FromArgb(58, 100, 112), Color.FromArgb(220, 240, 230), Color.FromArgb(32, 44, 58), Color.FromArgb(16, 22, 28), aura, Color.FromArgb(10, 18, 20));
     }
-}
-
-internal readonly record struct Vec2(float X, float Y)
-{
-    public float Length => MathF.Sqrt(X * X + Y * Y);
-    public PointF Point => new(X, Y);
-    public Vec2 Normalized()
-    {
-        var len = Length;
-        return len > 0.0001f ? this / len : new Vec2();
-    }
-    public static Vec2 FromAngle(float angle) => new(MathF.Cos(angle), MathF.Sin(angle));
-    public PointF PointSize() => new(X, Y);
-    public static Vec2 operator +(Vec2 a, Vec2 b) => new(a.X + b.X, a.Y + b.Y);
-    public static Vec2 operator -(Vec2 a, Vec2 b) => new(a.X - b.X, a.Y - b.Y);
-    public static Vec2 operator -(Vec2 a) => new(-a.X, -a.Y);
-    public static Vec2 operator *(Vec2 a, float b) => new(a.X * b, a.Y * b);
-    public static Vec2 operator /(Vec2 a, float b) => new(a.X / b, a.Y / b);
 }

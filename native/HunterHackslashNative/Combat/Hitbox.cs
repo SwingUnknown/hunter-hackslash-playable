@@ -31,7 +31,7 @@ internal sealed record Hitbox(HitboxShape Shape, float Range, float Arc, float R
 
         if (dist > Range + targetRadius) return false;
         if (Arc >= MathF.PI * 1.95f) return true;
-        var delta = MathF.Abs(MathF.Atan2(MathF.Sin(MathF.Atan2(to.Y, to.X) - angle), MathF.Cos(MathF.Atan2(to.Y, to.X) - angle)));
+        var delta = MathF.Abs(Vec2.AngleDelta(angle, Vec2.AngleOf(to)));
         return delta <= Arc * 0.5f;
     }
 }
