@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "characters": [
+    {
+      "id": "gon",
+      "fanName": "곤",
+      "releaseName": "Wild Fist",
+      "role": "enhancement_bruiser",
+      "nenTags": ["enhancement"],
+      "baseStats": {
+        "maxHp": 1200,
+        "attack": 115,
+        "defense": 85,
+        "moveSpeed": 5.2,
+        "dashCooldown": 1.05,
+        "auraMax": 100,
+        "renMax": 100,
+        "ultimateMax": 100
+      },
+      "comboSetId": "gon_combo_v1",
+      "passiveId": "wild_resolve",
+      "skillIds": ["gon_rock_breaker", "gon_paper_burst", "gon_scissors_cleave"],
+      "ultimateSkillId": "gon_final_rock",
+      "renBurstId": "gon_wild_ren"
+    },
+    {
+      "id": "killua",
+      "fanName": "키르아",
+      "releaseName": "Lightning Step",
+      "role": "transmutation_assassin",
+      "nenTags": ["transmutation"],
+      "baseStats": {
+        "maxHp": 900,
+        "attack": 95,
+        "defense": 65,
+        "moveSpeed": 6.4,
+        "dashCooldown": 0.72,
+        "auraMax": 110,
+        "renMax": 100,
+        "ultimateMax": 100
+      },
+      "comboSetId": "killua_combo_v1",
+      "passiveId": "assassin_rhythm",
+      "skillIds": ["killua_lightning_dash", "killua_needle_palm", "killua_godspeed_field"],
+      "ultimateSkillId": "killua_thunder_god_step",
+      "renBurstId": "killua_godspeed_ren"
+    },
+    {
+      "id": "kurapika",
+      "fanName": "크라피카",
+      "releaseName": "Scarlet Chain",
+      "role": "conjuration_controller",
+      "nenTags": ["conjuration", "specialist"],
+      "baseStats": {
+        "maxHp": 1000,
+        "attack": 100,
+        "defense": 75,
+        "moveSpeed": 5.6,
+        "dashCooldown": 0.95,
+        "auraMax": 125,
+        "renMax": 100,
+        "ultimateMax": 100
+      },
+      "comboSetId": "kurapika_combo_v1",
+      "passiveId": "scarlet_focus",
+      "skillIds": ["kurapika_chain_bind", "kurapika_holy_chain", "kurapika_judgment_mark"],
+      "ultimateSkillId": "kurapika_emperor_chain_domain",
+      "renBurstId": "kurapika_emperor_chain_ren"
+    },
+    {
+      "id": "adult_gon",
+      "fanName": "곤육몬",
+      "releaseName": "Vow Ascendant",
+      "role": "forbidden_enhancement_destroyer",
+      "nenTags": ["enhancement", "vow"],
+      "baseStats": {
+        "maxHp": 1800,
+        "attack": 178,
+        "defense": 110,
+        "moveSpeed": 5.8,
+        "dashCooldown": 0.9,
+        "auraMax": 150,
+        "renMax": 125,
+        "ultimateMax": 100
+      },
+      "comboSetId": "adult_gon_combo_v1",
+      "passiveId": "vow_pressure",
+      "skillIds": ["adult_gon_vow_step", "adult_gon_crater_rock", "adult_gon_black_scissors"],
+      "ultimateSkillId": "adult_gon_final_vow",
+      "renBurstId": "adult_gon_vow_ren"
+    }
+  ]
+}

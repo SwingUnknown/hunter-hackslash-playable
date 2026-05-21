@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "cards": [
+    {
+      "id": "magnetic_step",
+      "fanName": "자석 걸음",
+      "releaseName": "Magnetic Step",
+      "rarity": "common",
+      "type": "item",
+      "tags": ["utility", "movement"],
+      "effect": { "kind": "pickup_magnet", "radiusBonus": 3.0, "auraOrbPull": true }
+    },
+    {
+      "id": "aura_battery",
+      "fanName": "오라 배터리",
+      "releaseName": "Aura Battery",
+      "rarity": "common",
+      "type": "item",
+      "tags": ["aura"],
+      "effect": { "kind": "stat_multiplier", "stat": "auraGain", "value": 1.12 }
+    },
+    {
+      "id": "accompany_gate",
+      "fanName": "동행",
+      "releaseName": "Accompany Gate",
+      "rarity": "rare",
+      "type": "spell",
+      "tags": ["stage", "bonus_room"],
+      "effect": { "kind": "open_bonus_room", "roomPool": "greed_bonus_challenge" }
+    },
+    {
+      "id": "contact_signal",
+      "fanName": "교신",
+      "releaseName": "Contact Signal",
+      "rarity": "rare",
+      "type": "spell",
+      "tags": ["elite", "reward"],
+      "effect": { "kind": "spawn_hidden_elite", "rewardMultiplier": 1.25 }
+    },
+    {
+      "id": "risky_revival",
+      "fanName": "위험한 부활",
+      "releaseName": "Risky Revival",
+      "rarity": "epic",
+      "type": "rule",
+      "tags": ["risk", "survival"],
+      "effect": { "kind": "revive_once", "reviveHpPercent": 0.3, "maxHpMultiplierAfter": 0.8 }
+    },
+    {
+      "id": "chain_execution",
+      "fanName": "처형 체인",
+      "releaseName": "Chain Execution",
+      "rarity": "epic",
+      "type": "item",
+      "tags": ["kurapika", "mark"],
+      "effect": { "kind": "marked_enemy_execute", "thresholdHpPercent": 0.12, "cooldown": 8.0 }
+    },
+    {
+      "id": "blue_planet_reroll",
+      "fanName": "블루 플래닛",
+      "releaseName": "Blue Planet Reroll",
+      "rarity": "legendary",
+      "type": "specified_slot",
+      "tags": ["reward", "reroll"],
+      "effect": { "kind": "reward_reroll_all", "charges": 1, "upgradeRarityChance": 0.18 }
+    }
+  ]
+}

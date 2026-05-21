@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "actions": [
+    { "id": "move", "keyboard": "WASD", "gamepad": "LeftStick" },
+    { "id": "camera", "keyboard": "Mouse", "gamepad": "RightStick" },
+    { "id": "light_attack", "keyboard": "Mouse0 / J", "gamepad": "X" },
+    { "id": "heavy_attack", "keyboard": "Mouse1 / K", "gamepad": "Y" },
+    { "id": "dash", "keyboard": "Space / Shift", "gamepad": "B" },
+    { "id": "skill_1", "keyboard": "Q", "gamepad": "RB+X" },
+    { "id": "skill_2", "keyboard": "E", "gamepad": "RB+Y" },
+    { "id": "skill_3", "keyboard": "R", "gamepad": "RB+B" },
+    { "id": "ultimate", "keyboard": "F", "gamepad": "LB+RB" },
+    { "id": "lock_on", "keyboard": "Tab / Mouse2", "gamepad": "R3" }
+  ]
+}

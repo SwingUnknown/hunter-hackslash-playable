@@ -1,0 +1,204 @@
+{
+  "version": 2,
+  "stages": [
+    {
+      "id": "exam_forest_run",
+      "fanName": "헌터 시험 숲길",
+      "releaseName": "Exam Forest Run",
+      "arc": "hunter_exam",
+      "tier": "early",
+      "recommendedPower": 1,
+      "unlockCondition": "default_unlocked",
+      "durationTargetMinutes": 4,
+      "environmentId": "env_exam_forest",
+      "designIntent": "Teach movement, basic attacks, pickups, and the first elite read without punishing experimentation.",
+      "objectives": ["learn_movement", "maintain_basic_combo", "defeat_first_elite"],
+      "waves": [
+        { "time": 3, "intent": "single_role_intro", "spawns": [{ "enemyId": "rookie_fighter", "count": 4 }] },
+        { "time": 38, "intent": "spacing_practice", "spawns": [{ "enemyId": "rookie_fighter", "count": 5 }] },
+        { "time": 78, "intent": "elite_intro", "spawns": [{ "enemyId": "rookie_fighter", "count": 5 }, { "enemyId": "nen_boxer", "count": 1 }] },
+        { "time": 126, "intent": "first_combo_check", "spawns": [{ "enemyId": "rookie_fighter", "count": 7 }, { "enemyId": "nen_boxer", "count": 1 }] }
+      ],
+      "bossId": null,
+      "rewardPoolId": "early_training_rewards",
+      "nextStageIds": ["arena_floor_50"]
+    },
+    {
+      "id": "arena_floor_50",
+      "fanName": "천공격투장 50층",
+      "releaseName": "Arena Floor 50",
+      "arc": "heaven_arena",
+      "tier": "early",
+      "recommendedPower": 2,
+      "unlockCondition": "clear:exam_forest_run",
+      "durationTargetMinutes": 5,
+      "environmentId": "env_heaven_arena_basic",
+      "designIntent": "Reward clean crowd control and teach the player to keep combo pressure while one bruiser anchors the pack.",
+      "objectives": ["clear_waves", "maintain_combo_rank_B", "control_first_bruisers"],
+      "waves": [
+        { "time": 3, "intent": "warm_start", "spawns": [{ "enemyId": "rookie_fighter", "count": 6 }] },
+        { "time": 32, "intent": "combo_feed", "spawns": [{ "enemyId": "rookie_fighter", "count": 8 }] },
+        { "time": 70, "intent": "bruiser_anchor", "spawns": [{ "enemyId": "rookie_fighter", "count": 7 }, { "enemyId": "nen_boxer", "count": 1 }] },
+        { "time": 112, "intent": "split_attention", "spawns": [{ "enemyId": "rookie_fighter", "count": 9 }, { "enemyId": "nen_boxer", "count": 1 }] },
+        { "time": 155, "intent": "double_elite_check", "spawns": [{ "enemyId": "rookie_fighter", "count": 6 }, { "enemyId": "nen_boxer", "count": 2 }] }
+      ],
+      "bossId": null,
+      "rewardPoolId": "arena_basic_rewards",
+      "nextStageIds": ["arena_floor_200"]
+    },
+    {
+      "id": "arena_floor_200",
+      "fanName": "천공격투장 200층",
+      "releaseName": "Arena Floor 200",
+      "arc": "heaven_arena",
+      "tier": "mid",
+      "recommendedPower": 4,
+      "unlockCondition": "clear:arena_floor_50",
+      "durationTargetMinutes": 6,
+      "environmentId": "env_heaven_arena_elite",
+      "designIntent": "Use elite density as a boss rehearsal: small packs create openings, bruisers teach poise breaks, then the boss tests commitment.",
+      "objectives": ["break_elite_poise", "save_aura_for_boss", "defeat_boss"],
+      "waves": [
+        { "time": 4, "intent": "elite_recall", "spawns": [{ "enemyId": "rookie_fighter", "count": 7 }, { "enemyId": "nen_boxer", "count": 1 }] },
+        { "time": 42, "intent": "poise_pressure", "spawns": [{ "enemyId": "rookie_fighter", "count": 6 }, { "enemyId": "nen_boxer", "count": 2 }] },
+        { "time": 88, "intent": "boss_resource_setup", "spawns": [{ "enemyId": "rookie_fighter", "count": 8 }, { "enemyId": "nen_boxer", "count": 2 }] },
+        { "time": 132, "intent": "final_bruiser_gate", "spawns": [{ "enemyId": "rookie_fighter", "count": 6 }, { "enemyId": "nen_boxer", "count": 3 }] }
+      ],
+      "bossId": "arena_trickster_boss",
+      "rewardPoolId": "arena_elite_rewards",
+      "nextStageIds": ["estate_testing_gate"]
+    },
+    {
+      "id": "estate_testing_gate",
+      "fanName": "조르딕 시험의 문",
+      "releaseName": "Estate Testing Gate",
+      "arc": "zoldyck_estate",
+      "tier": "mid",
+      "recommendedPower": 6,
+      "unlockCondition": "clear:arena_floor_200",
+      "durationTargetMinutes": 6,
+      "environmentId": "env_estate_gate",
+      "designIntent": "Change the question from damage output to reaction timing: assassins punish autopilot, beasts punish greedy positioning.",
+      "objectives": ["read_dash_attacks", "kite_beast_bruisers", "defeat_boss"],
+      "waves": [
+        { "time": 4, "intent": "assassin_intro", "spawns": [{ "enemyId": "assassin_butler", "count": 4 }] },
+        { "time": 45, "intent": "dash_swarm", "spawns": [{ "enemyId": "assassin_butler", "count": 6 }, { "enemyId": "rookie_fighter", "count": 4 }] },
+        { "time": 90, "intent": "beast_intro", "spawns": [{ "enemyId": "guard_beast", "count": 1 }, { "enemyId": "assassin_butler", "count": 4 }] },
+        { "time": 135, "intent": "reaction_gate", "spawns": [{ "enemyId": "guard_beast", "count": 2 }, { "enemyId": "assassin_butler", "count": 5 }] }
+      ],
+      "bossId": "butler_captain_boss",
+      "rewardPoolId": "estate_rewards",
+      "nextStageIds": ["yorknew_auction_raid"]
+    },
+    {
+      "id": "yorknew_auction_raid",
+      "fanName": "요크신 경매장 습격",
+      "releaseName": "Yorknew Auction Raid",
+      "arc": "yorknew",
+      "tier": "mid",
+      "recommendedPower": 8,
+      "unlockCondition": "clear:estate_testing_gate",
+      "durationTargetMinutes": 6,
+      "environmentId": "env_yorknew_auction",
+      "designIntent": "Introduce ranged denial and force target priority: gunners pull attention while a tank creates a moving wall.",
+      "objectives": ["close_distance_on_ranged", "prioritize_glass_cannons", "break_security_line"],
+      "waves": [
+        { "time": 4, "intent": "ranged_intro", "spawns": [{ "enemyId": "mafia_gunner", "count": 6 }] },
+        { "time": 44, "intent": "screen_lanes", "spawns": [{ "enemyId": "mafia_gunner", "count": 8 }, { "enemyId": "rookie_fighter", "count": 5 }] },
+        { "time": 92, "intent": "tank_intro", "spawns": [{ "enemyId": "shadow_beast_tank", "count": 1 }, { "enemyId": "mafia_gunner", "count": 6 }] },
+        { "time": 142, "intent": "priority_exam", "spawns": [{ "enemyId": "shadow_beast_tank", "count": 1 }, { "enemyId": "mafia_gunner", "count": 8 }, { "enemyId": "rookie_fighter", "count": 4 }] }
+      ],
+      "bossId": null,
+      "rewardPoolId": "yorknew_rewards",
+      "nextStageIds": ["greed_card_plains"]
+    },
+    {
+      "id": "greed_card_plains",
+      "fanName": "그리드 카드 평원",
+      "releaseName": "Card Hunter Plains",
+      "arc": "greed_island",
+      "tier": "mid",
+      "recommendedPower": 10,
+      "unlockCondition": "clear:yorknew_auction_raid",
+      "durationTargetMinutes": 7,
+      "environmentId": "env_greed_card_plains",
+      "designIntent": "Make the arena unstable: skirmishers tempt chase routes while trappers turn careless movement into burst risk.",
+      "objectives": ["catch_skirmishers", "avoid_trap_zones", "defeat_boss"],
+      "waves": [
+        { "time": 4, "intent": "skirmisher_intro", "spawns": [{ "enemyId": "card_thief", "count": 8 }] },
+        { "time": 44, "intent": "trap_intro", "spawns": [{ "enemyId": "card_thief", "count": 8 }, { "enemyId": "bomb_trapper", "count": 1 }] },
+        { "time": 92, "intent": "movement_tax", "spawns": [{ "enemyId": "card_thief", "count": 8 }, { "enemyId": "bomb_trapper", "count": 2 }] },
+        { "time": 145, "intent": "boss_resource_setup", "spawns": [{ "enemyId": "card_thief", "count": 10 }, { "enemyId": "bomb_trapper", "count": 2 }, { "enemyId": "rookie_fighter", "count": 4 }] }
+      ],
+      "bossId": "bomber_leader_boss",
+      "rewardPoolId": "greed_card_rewards",
+      "nextStageIds": ["chimera_forest_outbreak"]
+    },
+    {
+      "id": "chimera_forest_outbreak",
+      "fanName": "키메라 숲 습격",
+      "releaseName": "Ant Forest Outbreak",
+      "arc": "chimera_ant",
+      "tier": "war",
+      "recommendedPower": 13,
+      "unlockCondition": "clear:greed_card_plains",
+      "durationTargetMinutes": 7,
+      "environmentId": "env_ant_forest",
+      "designIntent": "Deliver the horde fantasy after the player has crowd tools: commanders become high-value tempo targets inside large packs.",
+      "objectives": ["survive_horde", "focus_commanders", "hold_combo_under_pressure"],
+      "waves": [
+        { "time": 3, "intent": "horde_intro", "spawns": [{ "enemyId": "ant_soldier", "count": 14 }] },
+        { "time": 52, "intent": "first_commander", "spawns": [{ "enemyId": "ant_soldier", "count": 18 }, { "enemyId": "ant_commander", "count": 1 }] },
+        { "time": 105, "intent": "flank_pressure", "spawns": [{ "enemyId": "ant_soldier", "count": 22 }, { "enemyId": "ant_commander", "count": 1 }] },
+        { "time": 162, "intent": "dual_commander", "spawns": [{ "enemyId": "ant_soldier", "count": 24 }, { "enemyId": "ant_commander", "count": 2 }] },
+        { "time": 222, "intent": "war_climax", "spawns": [{ "enemyId": "ant_soldier", "count": 28 }, { "enemyId": "ant_commander", "count": 2 }] }
+      ],
+      "bossId": null,
+      "rewardPoolId": "chimera_rewards",
+      "nextStageIds": ["ant_king_domain"]
+    },
+    {
+      "id": "ant_king_domain",
+      "fanName": "왕의 영역",
+      "releaseName": "King's Domain",
+      "arc": "chimera_ant",
+      "tier": "late",
+      "recommendedPower": 16,
+      "unlockCondition": "clear:chimera_forest_outbreak",
+      "durationTargetMinutes": 6,
+      "environmentId": "env_ant_palace_duel",
+      "designIntent": "Decompress from horde play into a duel: two small primers refill resources, then the king tests dodge timing and patience.",
+      "objectives": ["prepare_for_duel", "save_ultimate", "defeat_boss"],
+      "waves": [
+        { "time": 4, "intent": "duel_warmup", "spawns": [{ "enemyId": "ant_soldier", "count": 8 }] },
+        { "time": 56, "intent": "commander_primer", "spawns": [{ "enemyId": "ant_soldier", "count": 6 }, { "enemyId": "ant_commander", "count": 1 }] }
+      ],
+      "bossId": "ant_king_boss",
+      "rewardPoolId": "king_rewards",
+      "nextStageIds": ["final_hunter_trial"]
+    },
+    {
+      "id": "final_hunter_trial",
+      "fanName": "최종 헌터 시험",
+      "releaseName": "Final Hunter Trial",
+      "arc": "hunter_exam",
+      "tier": "late",
+      "recommendedPower": 18,
+      "unlockCondition": "clear:ant_king_domain",
+      "durationTargetMinutes": 7,
+      "environmentId": "env_final_trial_arena",
+      "designIntent": "A final remix exam: each wave asks for a different learned answer, then the last wave layers elites without adding a new rule.",
+      "objectives": ["survive_remix_waves", "rotate_target_priority", "clear_final_elites"],
+      "waves": [
+        { "time": 4, "intent": "arena_recall", "spawns": [{ "enemyId": "rookie_fighter", "count": 8 }, { "enemyId": "nen_boxer", "count": 2 }] },
+        { "time": 48, "intent": "reaction_recall", "spawns": [{ "enemyId": "assassin_butler", "count": 7 }, { "enemyId": "guard_beast", "count": 1 }] },
+        { "time": 96, "intent": "ranged_trap_mix", "spawns": [{ "enemyId": "mafia_gunner", "count": 7 }, { "enemyId": "bomb_trapper", "count": 2 }, { "enemyId": "card_thief", "count": 6 }] },
+        { "time": 150, "intent": "commander_mix", "spawns": [{ "enemyId": "ant_soldier", "count": 18 }, { "enemyId": "ant_commander", "count": 1 }, { "enemyId": "shadow_beast_tank", "count": 1 }] },
+        { "time": 210, "intent": "final_elite_exam", "spawns": [{ "enemyId": "nen_boxer", "count": 2 }, { "enemyId": "assassin_butler", "count": 5 }, { "enemyId": "ant_commander", "count": 1 }, { "enemyId": "mafia_gunner", "count": 5 }] }
+      ],
+      "bossId": null,
+      "rewardPoolId": "final_trial_rewards",
+      "nextStageIds": []
+    }
+  ]
+}

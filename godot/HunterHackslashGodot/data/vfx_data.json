@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "vfx": [
+    { "id": "vfx_enhancement_heavy_punch", "nenType": "enhancement", "category": "skill", "poolSize": 8, "maxActive": 4, "lifetime": 1.2, "importance": "high" },
+    { "id": "vfx_aura_projectile_green", "nenType": "emission", "category": "projectile", "poolSize": 16, "maxActive": 10, "lifetime": 3.0, "importance": "medium" },
+    { "id": "vfx_enhancement_aura_slash", "nenType": "enhancement", "category": "skill", "poolSize": 8, "maxActive": 5, "lifetime": 1.0, "importance": "medium" },
+    { "id": "vfx_ultimate_rock_eruption", "nenType": "enhancement", "category": "ultimate", "poolSize": 2, "maxActive": 1, "lifetime": 2.0, "importance": "critical" },
+    { "id": "vfx_transmutation_lightning_dash", "nenType": "transmutation", "category": "skill", "poolSize": 12, "maxActive": 6, "lifetime": 0.8, "importance": "high" },
+    { "id": "vfx_electric_multi_cut", "nenType": "transmutation", "category": "skill", "poolSize": 10, "maxActive": 5, "lifetime": 1.0, "importance": "medium" },
+    { "id": "vfx_godspeed_aura", "nenType": "transmutation", "category": "buff", "poolSize": 3, "maxActive": 1, "lifetime": 6.0, "importance": "high" },
+    { "id": "vfx_ultimate_thunder_steps", "nenType": "transmutation", "category": "ultimate", "poolSize": 2, "maxActive": 1, "lifetime": 2.0, "importance": "critical" },
+    { "id": "vfx_chain_bind", "nenType": "conjuration", "category": "skill", "poolSize": 12, "maxActive": 8, "lifetime": 1.4, "importance": "high" },
+    { "id": "vfx_holy_chain_heal", "nenType": "conjuration", "category": "heal", "poolSize": 4, "maxActive": 2, "lifetime": 1.5, "importance": "medium" },
+    { "id": "vfx_judgment_mark", "nenType": "specialist", "category": "debuff", "poolSize": 16, "maxActive": 12, "lifetime": 8.0, "importance": "high" },
+    { "id": "vfx_ultimate_chain_domain", "nenType": "specialist", "category": "ultimate", "poolSize": 2, "maxActive": 1, "lifetime": 2.2, "importance": "critical" },
+    { "id": "vfx_vow_step", "nenType": "enhancement", "category": "skill", "poolSize": 8, "maxActive": 4, "lifetime": 1.0, "importance": "high" },
+    { "id": "vfx_vow_crater_rock", "nenType": "enhancement", "category": "skill", "poolSize": 5, "maxActive": 3, "lifetime": 1.4, "importance": "critical" },
+    { "id": "vfx_vow_black_scissors", "nenType": "enhancement", "category": "skill", "poolSize": 6, "maxActive": 4, "lifetime": 1.1, "importance": "high" },
+    { "id": "vfx_vow_final", "nenType": "enhancement", "category": "ultimate", "poolSize": 2, "maxActive": 1, "lifetime": 2.4, "importance": "critical" }
+  ],
+  "impactProfiles": {
+    "light": { "hitstop": 0.035, "shake": 0.08, "flash": "small" },
+    "heavy": { "hitstop": 0.07, "shake": 0.18, "flash": "medium" },
+    "critical": { "hitstop": 0.09, "shake": 0.25, "flash": "white_core" },
+    "poiseBreak": { "hitstop": 0.11, "shake": 0.3, "flash": "ring_break" }
+  }
+}

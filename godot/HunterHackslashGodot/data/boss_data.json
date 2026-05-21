@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "bosses": [
+    {
+      "id": "arena_trickster_boss",
+      "fanName": "천공투기장 트릭스터",
+      "releaseName": "Arena Trickster",
+      "arc": "heaven_arena",
+      "nenTags": ["transmutation", "emission"],
+      "stats": { "maxHp": 6800, "attack": 86, "defense": 42, "moveSpeed": 5.0, "poise": 520 },
+      "phaseThresholds": [0.65, 0.32],
+      "attacks": [
+        { "id": "elastic_pull", "telegraph": 0.55, "cooldown": 9.0, "danger": "medium" },
+        { "id": "card_fan", "telegraph": 0.45, "cooldown": 6.0, "danger": "medium" },
+        { "id": "fake_dash", "telegraph": 0.35, "cooldown": 8.0, "danger": "high", "punishWindow": 1.4 },
+        { "id": "sticky_trap_field", "telegraph": 0.75, "cooldown": 13.0, "danger": "high" }
+      ],
+      "stageMechanic": "sticky_aura_traps",
+      "weaknessRule": "fake_dash_miss_causes_poise_vulnerability",
+      "vfxProfile": "trickster_aura"
+    },
+    {
+      "id": "butler_captain_boss",
+      "fanName": "조르딕 저택 집사장",
+      "releaseName": "Estate Butler Captain",
+      "arc": "zoldyck_estate",
+      "nenTags": ["transmutation", "manipulation"],
+      "stats": { "maxHp": 8200, "attack": 98, "defense": 48, "moveSpeed": 6.1, "poise": 480 },
+      "phaseThresholds": [0.7, 0.35],
+      "attacks": [
+        { "id": "needle_rush", "telegraph": 0.42, "cooldown": 7.0, "danger": "high", "punishWindow": 1.1 },
+        { "id": "cross_slash", "telegraph": 0.55, "cooldown": 5.5, "danger": "medium" },
+        { "id": "poison_step", "telegraph": 0.5, "cooldown": 9.0, "danger": "medium" },
+        { "id": "electric_floor_lanes", "telegraph": 0.9, "cooldown": 15.0, "danger": "high" }
+      ],
+      "stageMechanic": "trap_floor_lanes",
+      "weaknessRule": "perfect_dodge_needle_rush_opens_counter",
+      "vfxProfile": "assassin_electric"
+    },
+    {
+      "id": "bomber_leader_boss",
+      "fanName": "그리드 아일랜드 폭탄마 리더",
+      "releaseName": "Bomber Leader",
+      "arc": "greed_island",
+      "nenTags": ["conjuration", "emission"],
+      "stats": { "maxHp": 9600, "attack": 104, "defense": 46, "moveSpeed": 4.8, "poise": 560 },
+      "phaseThresholds": [0.66, 0.33],
+      "attacks": [
+        { "id": "bomb_mark", "telegraph": 0.55, "cooldown": 8.0, "danger": "high" },
+        { "id": "mine_throw", "telegraph": 0.48, "cooldown": 6.0, "danger": "medium" },
+        { "id": "countdown_detonation", "telegraph": 1.2, "cooldown": 16.0, "danger": "lethal_if_ignored" },
+        { "id": "arena_segment_bombs", "telegraph": 1.0, "cooldown": 14.0, "danger": "high" }
+      ],
+      "stageMechanic": "cleanse_zones",
+      "weaknessRule": "cleansing_bomb_mark_grants_boss_vulnerability",
+      "vfxProfile": "bomb_magic"
+    },
+    {
+      "id": "ant_king_boss",
+      "fanName": "왕급 키메라 앤트",
+      "releaseName": "Ant King",
+      "arc": "chimera_ant",
+      "nenTags": ["enhancement", "specialist"],
+      "stats": { "maxHp": 18000, "attack": 145, "defense": 72, "moveSpeed": 6.0, "poise": 780 },
+      "phaseThresholds": [0.75, 0.5, 0.2],
+      "attacks": [
+        { "id": "instant_step_strike", "telegraph": 0.5, "cooldown": 6.0, "danger": "high", "punishWindow": 0.9 },
+        { "id": "aura_palm_cone", "telegraph": 0.8, "cooldown": 9.0, "danger": "high" },
+        { "id": "board_pattern_tiles", "telegraph": 1.1, "cooldown": 15.0, "danger": "high" },
+        { "id": "royal_pressure", "telegraph": 1.0, "cooldown": 18.0, "danger": "lethal_if_ignored" }
+      ],
+      "stageMechanic": "pattern_duel_arena",
+      "weaknessRule": "perfect_dodge_or_poise_break_after_committed_heavy",
+      "vfxProfile": "specialist_king_aura"
+    }
+  ]
+}

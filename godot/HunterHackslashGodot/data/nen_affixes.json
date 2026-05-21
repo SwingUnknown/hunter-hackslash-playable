@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "affixes": [
+    { "id": "heavy_breaker", "name": "Heavy Breaker", "tags": ["enhancement"], "stat": "poiseDamage", "min": 0.08, "max": 0.24 },
+    { "id": "swift_step", "name": "Swift Step", "tags": ["transmutation"], "stat": "dashCooldownReduction", "min": 0.05, "max": 0.18 },
+    { "id": "aura_battery_affix", "name": "Aura Battery", "tags": ["aura"], "stat": "auraGain", "min": 0.06, "max": 0.2 },
+    { "id": "electric_echo", "name": "Electric Echo", "tags": ["killua", "transmutation"], "stat": "multiHitEchoChance", "min": 0.06, "max": 0.16 },
+    { "id": "chain_execution_affix", "name": "Chain Execution", "tags": ["kurapika", "conjuration"], "stat": "markedDamage", "min": 0.1, "max": 0.28 },
+    { "id": "wild_charge", "name": "Wild Charge", "tags": ["gon", "enhancement"], "stat": "chargeDamage", "min": 0.1, "max": 0.3 },
+    { "id": "last_stand", "name": "Last Stand", "tags": ["risk"], "stat": "lowHpDamage", "min": 0.12, "max": 0.35 }
+  ],
+  "contracts": [
+    {
+      "id": "no_dodge_oath",
+      "name": "No Dodge Oath",
+      "risk": { "dashCooldownMultiplier": 1.6 },
+      "reward": { "heavyDamageMultiplier": 1.45 },
+      "maxStacks": 1
+    },
+    {
+      "id": "low_health_vow",
+      "name": "Low Health Vow",
+      "risk": { "maxHpMultiplier": 0.75 },
+      "reward": { "ultimateGainMultiplier": 1.35 },
+      "maxStacks": 1
+    },
+    {
+      "id": "single_target_oath",
+      "name": "Single Target Oath",
+      "risk": { "aoeDamageMultiplier": 0.8 },
+      "reward": { "bossDamageMultiplier": 1.4 },
+      "maxStacks": 1
+    },
+    {
+      "id": "judgment_chain_oath",
+      "name": "Judgment Chain Oath",
+      "risk": { "markedEnemyEnrageOnTimeout": true },
+      "reward": { "markedBurstMultiplier": 1.8 },
+      "maxStacks": 1
+    }
+  ]
+}

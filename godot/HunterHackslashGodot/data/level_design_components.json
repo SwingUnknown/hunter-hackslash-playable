@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "designPillars": [
+    {
+      "id": "readable_pressure",
+      "description": "Every danger should be readable before it hurts the player."
+    },
+    {
+      "id": "skill_expression",
+      "description": "Good movement, target priority, and resource timing should make the same stage feel easier."
+    },
+    {
+      "id": "payoff_after_pressure",
+      "description": "A tense wave should be followed by a wave where the player can spend skills and feel powerful."
+    },
+    {
+      "id": "one_new_question",
+      "description": "Each stage introduces one major combat question, then remixes it."
+    }
+  ],
+  "componentFamilies": [
+    {
+      "id": "arena_layout",
+      "components": [
+        { "id": "open_loop", "name": "Open Loop", "use": "Movement learning, horde payoff, wide 360-degree combat." },
+        { "id": "ring_bowl", "name": "Ring Bowl", "use": "Combo pressure and central positioning." },
+        { "id": "gate_lane", "name": "Gate Lane", "use": "Dash reads, frontal pressure, bruiser gates." },
+        { "id": "broken_lanes", "name": "Broken Lanes", "use": "Ranged priority and approach route decisions." },
+        { "id": "trap_field", "name": "Trap Field", "use": "Moving safety zones and chase bait." },
+        { "id": "duel_board", "name": "Duel Board", "use": "Boss pattern reading and punish windows." },
+        { "id": "final_remix_arena", "name": "Final Remix Arena", "use": "Layered endgame checks without new rules." }
+      ]
+    },
+    {
+      "id": "encounter_tool",
+      "components": [
+        { "id": "fodder_feed", "name": "Fodder Feed", "use": "Low-threat enemies for hit feel, combo, and resource recovery." },
+        { "id": "anchor_elite", "name": "Anchor Elite", "use": "A durable enemy that gives the crowd a center of gravity." },
+        { "id": "flanker", "name": "Flanker", "use": "Fast enemies that punish tunnel vision." },
+        { "id": "ranged_tax", "name": "Ranged Tax", "use": "Long-range enemies that become costly if ignored." },
+        { "id": "trap_clock", "name": "Trap Clock", "use": "Delayed area danger that forces movement decisions." },
+        { "id": "commander_focus", "name": "Commander Focus", "use": "High-priority enemy that makes the wave harder while alive." },
+        { "id": "boss_primer", "name": "Boss Primer", "use": "Small wave before a boss to refill resources and teach the pattern space." },
+        { "id": "final_remix", "name": "Final Remix", "use": "Multiple learned rules combined into one end-stage exam." }
+      ]
+    },
+    {
+      "id": "optional_goal",
+      "components": [
+        { "id": "combo_b", "name": "Combo B", "use": "Clear while reaching at least B rank combo pressure." },
+        { "id": "fast_clear", "name": "Fast Clear", "use": "Clear under a target time for extra reward weight." },
+        { "id": "priority_kill", "name": "Priority Kill", "use": "Kill a specified threat before the rest of the wave collapses." },
+        { "id": "clean_dodge", "name": "Clean Dodge", "use": "Avoid a boss signature attack and counter within the punish window." },
+        { "id": "resource_finish", "name": "Resource Finish", "use": "Finish the final elite or boss with a skill or ultimate." }
+      ]
+    }
+  ],
+  "stageBlueprints": [
+    {
+      "stageId": "exam_forest_run",
+      "arenaLayout": "open_loop",
+      "coreQuestion": "Can the player move, aim, and keep basic attacks flowing?",
+      "encounterTools": ["fodder_feed", "anchor_elite"],
+      "optionalGoals": ["combo_b", "fast_clear"],
+      "rewardBias": ["basic_attack", "pickup_value", "early_survival"]
+    },
+    {
+      "stageId": "arena_floor_50",
+      "arenaLayout": "ring_bowl",
+      "coreQuestion": "Can the player hold the center and keep combo pressure under elite presence?",
+      "encounterTools": ["fodder_feed", "anchor_elite"],
+      "optionalGoals": ["combo_b", "resource_finish"],
+      "rewardBias": ["combo", "poise_damage", "cooldown"]
+    },
+    {
+      "stageId": "arena_floor_200",
+      "arenaLayout": "ring_bowl",
+      "coreQuestion": "Can the player save resources for a boss after dense elite waves?",
+      "encounterTools": ["anchor_elite", "boss_primer"],
+      "optionalGoals": ["clean_dodge", "resource_finish"],
+      "rewardBias": ["elite_break", "ultimate_gain", "boss_damage"]
+    },
+    {
+      "stageId": "estate_testing_gate",
+      "arenaLayout": "gate_lane",
+      "coreQuestion": "Can the player read fast dash attacks and stop greedy attacks early?",
+      "encounterTools": ["flanker", "anchor_elite"],
+      "optionalGoals": ["clean_dodge", "priority_kill"],
+      "rewardBias": ["dash", "counter", "movement_speed"]
+    },
+    {
+      "stageId": "yorknew_auction_raid",
+      "arenaLayout": "broken_lanes",
+      "coreQuestion": "Can the player identify and delete ranged threats before the field becomes expensive?",
+      "encounterTools": ["ranged_tax", "anchor_elite"],
+      "optionalGoals": ["priority_kill", "fast_clear"],
+      "rewardBias": ["gap_close", "ranged_resist", "single_target"]
+    },
+    {
+      "stageId": "greed_card_plains",
+      "arenaLayout": "trap_field",
+      "coreQuestion": "Can the player chase skirmishers without being baited into delayed danger?",
+      "encounterTools": ["flanker", "trap_clock", "boss_primer"],
+      "optionalGoals": ["clean_dodge", "fast_clear"],
+      "rewardBias": ["area_control", "status_cleanse", "skill_range"]
+    },
+    {
+      "stageId": "chimera_forest_outbreak",
+      "arenaLayout": "open_loop",
+      "coreQuestion": "Can the player manage a horde while finding and killing commanders first?",
+      "encounterTools": ["fodder_feed", "commander_focus", "final_remix"],
+      "optionalGoals": ["priority_kill", "combo_b"],
+      "rewardBias": ["aoe", "ultimate_gain", "crowd_control"]
+    },
+    {
+      "stageId": "ant_king_domain",
+      "arenaLayout": "duel_board",
+      "coreQuestion": "Can the player slow down after horde combat and punish only real boss openings?",
+      "encounterTools": ["boss_primer"],
+      "optionalGoals": ["clean_dodge", "resource_finish"],
+      "rewardBias": ["boss_damage", "defense", "counter"]
+    },
+    {
+      "stageId": "final_hunter_trial",
+      "arenaLayout": "final_remix_arena",
+      "coreQuestion": "Can the player rotate through every learned answer without a new rule being introduced?",
+      "encounterTools": ["final_remix", "ranged_tax", "commander_focus", "anchor_elite"],
+      "optionalGoals": ["combo_b", "priority_kill", "fast_clear"],
+      "rewardBias": ["endgame", "hybrid", "ultimate"]
+    }
+  ]
+}

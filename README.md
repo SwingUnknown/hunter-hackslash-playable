@@ -28,6 +28,35 @@ START_HUNTER_HACKSLASH.bat
 
 If generated deluxe assets are missing, the game still runs with the built-in fallback renderer. Generate the deluxe sheets locally for the current full visual pass.
 
+## Godot Migration Step 1
+
+The first Godot C# migration prototype lives here:
+
+```text
+godot/HunterHackslashGodot
+```
+
+It copies the pure `Combat/`, `Animation/`, and `data/` folders and connects `KinematicMotor` to a Godot `CharacterBody2D` through `scripts/PlayerAdapter.cs`.
+
+Current Godot prototype controls:
+
+- Move: WASD
+- Light attack: J / Left Mouse
+
+The Godot player adapter now drives `AttackTimelineStore`, `ActionState`, and `InputBuffer`. Attack startup/recovery logs are printed with `GD.Print`, and the debug body changes color by attack phase.
+
+Open it with Godot Engine 4.6.2 .NET:
+
+```text
+START_HUNTER_HACKSLASH_GODOT.bat
+```
+
+The local Godot .NET executable used for verification is:
+
+```text
+D:\tools\godot-4.6.2-stable-mono\Godot_v4.6.2-stable_mono_win64\Godot_v4.6.2-stable_mono_win64.exe
+```
+
 ## Generate Local Assets
 
 The repository keeps source inputs and the generator script, not the huge generated outputs. Install Pillow, then run:

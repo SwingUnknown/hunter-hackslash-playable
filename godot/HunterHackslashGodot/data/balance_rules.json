@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "targetFps": 60,
+  "combatTiming": {
+    "inputBufferSeconds": 0.24,
+    "dashBufferSeconds": 0.12,
+    "skillBufferSeconds": 0.2,
+    "maxHitstopSeconds": 0.2,
+    "perfectDodgeWindowSeconds": 0.08
+  },
+  "hitstop": {
+    "light": 0.045,
+    "heavy": 0.085,
+    "skillSmall": 0.065,
+    "skillLarge": 0.12,
+    "ultimate": 0.18
+  },
+  "crowdCaps": {
+    "early": { "maxVisible": 20, "maxFullAI": 15, "maxAttackers": 3, "maxElitesAttacking": 1 },
+    "mid": { "maxVisible": 35, "maxFullAI": 22, "maxAttackers": 5, "maxElitesAttacking": 2 },
+    "late": { "maxVisible": 60, "maxFullAI": 30, "maxAttackers": 7, "maxElitesAttacking": 3 },
+    "war": { "maxVisible": 80, "maxFullAI": 35, "maxAttackers": 8, "maxElitesAttacking": 3 }
+  },
+  "vfxCaps": {
+    "lightHit": 40,
+    "heavyHit": 16,
+    "skill": 12,
+    "ultimate": 2,
+    "bossTelegraph": 12
+  },
+  "rankThresholds": {
+    "C": 0,
+    "B": 1200,
+    "A": 2600,
+    "S": 4200,
+    "HUNTER_STAR": 6500
+  },
+  "damageFormula": {
+    "base": "skillPower * attackerAttack * defenseMultiplier * resistanceMultiplier * critMultiplier * contractMultiplier",
+    "defenseMultiplier": "100 / (100 + targetDefense)",
+    "minDamage": 1
+  }
+}

@@ -5,6 +5,12 @@ native/dist/
 native/HunterHackslashNative/bin/
 native/HunterHackslashNative/obj/
 
+# Godot generated/editor state
+godot/**/.godot/
+godot/**/.mono/
+godot/**/*.uid
+godot/**/export_presets.cfg
+
 # Packaged builds and portable runtime bundles
 *.zip
 runtime/

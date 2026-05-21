@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "enemies": [
+    {
+      "id": "rookie_fighter",
+      "fanName": "천공투기장 초급 격투가",
+      "releaseName": "Arena Rookie Fighter",
+      "arc": "heaven_arena",
+      "role": "fodder_melee",
+      "behaviorType": "melee_swarm",
+      "stats": { "maxHp": 180, "attack": 22, "defense": 10, "moveSpeed": 4.2, "poise": 35 },
+      "attacks": ["punch_combo_light"],
+      "tags": ["human", "arena", "fodder"],
+      "vfxProfile": "human_light"
+    },
+    {
+      "id": "nen_boxer",
+      "fanName": "넨 복서",
+      "releaseName": "Aura Boxer",
+      "arc": "heaven_arena",
+      "role": "bruiser",
+      "behaviorType": "melee_bruiser",
+      "stats": { "maxHp": 620, "attack": 48, "defense": 30, "moveSpeed": 3.6, "poise": 110 },
+      "attacks": ["aura_jab", "charged_hook", "guard_stance"],
+      "tags": ["human", "arena", "enhancement", "elite"],
+      "vfxProfile": "enhancement_medium"
+    },
+    {
+      "id": "assassin_butler",
+      "fanName": "암살 집사",
+      "releaseName": "Assassin Butler",
+      "arc": "zoldyck_estate",
+      "role": "assassin",
+      "behaviorType": "dash_assassin",
+      "stats": { "maxHp": 420, "attack": 55, "defense": 18, "moveSpeed": 5.8, "poise": 55 },
+      "attacks": ["needle_dash", "backstep_throw", "poison_cut"],
+      "tags": ["human", "estate", "assassin", "poison"],
+      "vfxProfile": "assassin_dark"
+    },
+    {
+      "id": "guard_beast",
+      "fanName": "저택 경비견",
+      "releaseName": "Estate Guard Beast",
+      "arc": "zoldyck_estate",
+      "role": "beast_bruiser",
+      "behaviorType": "leap_beast",
+      "stats": { "maxHp": 760, "attack": 62, "defense": 35, "moveSpeed": 5.1, "poise": 130 },
+      "attacks": ["leap_bite", "howl_stagger", "claw_swipe"],
+      "tags": ["beast", "estate", "bruiser"],
+      "vfxProfile": "beast_dark"
+    },
+    {
+      "id": "mafia_gunner",
+      "fanName": "마피아 총잡이",
+      "releaseName": "Mafia Gunner",
+      "arc": "yorknew",
+      "role": "ranged",
+      "behaviorType": "ranged_line_warning",
+      "stats": { "maxHp": 260, "attack": 42, "defense": 12, "moveSpeed": 3.8, "poise": 30 },
+      "attacks": ["warning_shot", "burst_fire", "roll_back"],
+      "tags": ["human", "urban", "ranged"],
+      "vfxProfile": "gunfire_light"
+    },
+    {
+      "id": "shadow_beast_tank",
+      "fanName": "음수형 탱커",
+      "releaseName": "Shadow Beast Tank",
+      "arc": "yorknew",
+      "role": "elite_tank",
+      "behaviorType": "armor_bruiser",
+      "stats": { "maxHp": 1400, "attack": 70, "defense": 55, "moveSpeed": 3.2, "poise": 220 },
+      "attacks": ["ground_slam", "burrow_grab", "poison_roar"],
+      "tags": ["mutant", "urban", "elite", "poison"],
+      "vfxProfile": "mutant_poison"
+    },
+    {
+      "id": "card_thief",
+      "fanName": "카드 사냥꾼",
+      "releaseName": "Card Thief",
+      "arc": "greed_island",
+      "role": "skirmisher",
+      "behaviorType": "hit_and_run",
+      "stats": { "maxHp": 360, "attack": 44, "defense": 18, "moveSpeed": 5.3, "poise": 45 },
+      "attacks": ["card_throw", "steal_dash", "smoke_escape"],
+      "tags": ["human", "game", "skirmisher"],
+      "vfxProfile": "card_magic"
+    },
+    {
+      "id": "bomb_trapper",
+      "fanName": "폭탄 함정술사",
+      "releaseName": "Bomb Trapper",
+      "arc": "greed_island",
+      "role": "controller",
+      "behaviorType": "trap_controller",
+      "stats": { "maxHp": 520, "attack": 58, "defense": 22, "moveSpeed": 4.0, "poise": 65 },
+      "attacks": ["place_mine", "bomb_mark", "detonate"],
+      "tags": ["human", "game", "trap", "controller"],
+      "vfxProfile": "bomb_magic"
+    },
+    {
+      "id": "ant_soldier",
+      "fanName": "키메라 병정개미",
+      "releaseName": "Ant Soldier",
+      "arc": "chimera_ant",
+      "role": "fodder_melee",
+      "behaviorType": "melee_swarm",
+      "stats": { "maxHp": 300, "attack": 40, "defense": 20, "moveSpeed": 4.6, "poise": 50 },
+      "attacks": ["claw_combo", "leap_small"],
+      "tags": ["chimera", "ant", "fodder"],
+      "vfxProfile": "ant_organic"
+    },
+    {
+      "id": "ant_commander",
+      "fanName": "키메라 사단장",
+      "releaseName": "Ant Commander",
+      "arc": "chimera_ant",
+      "role": "elite_commander",
+      "behaviorType": "commander_buffer",
+      "stats": { "maxHp": 2200, "attack": 88, "defense": 50, "moveSpeed": 4.5, "poise": 260 },
+      "attacks": ["command_roar", "leaping_strike", "summon_soldiers"],
+      "tags": ["chimera", "ant", "elite", "buffer"],
+      "vfxProfile": "ant_commander"
+    }
+  ]
+}

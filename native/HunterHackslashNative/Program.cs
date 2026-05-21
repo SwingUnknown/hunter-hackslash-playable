@@ -30,7 +30,9 @@ internal sealed class GameForm : Form
     private readonly Dictionary<string, Bitmap> actionSheets = [];
     private readonly Dictionary<string, Bitmap> illustrationCache = [];
     private readonly AttackTimelineStore attackTimelines = new();
+    private readonly InputBuffer actionBuffer = new(0.20f);
     private readonly CharacterSpec[] characters;
+    private static readonly KinematicSettings PlayerKinematics = new(Acceleration: 62f, Deceleration: 46f, TurnAcceleration: 82f);
     private readonly StageSpec[] stages;
     private const int SpriteDirections = 16;
     private const int SpriteFrames = 16;
@@ -79,8 +81,6 @@ internal sealed class GameForm : Form
     private int fpsFrames;
     private float fpsTimer;
     private bool debugCombat;
-    private string? bufferedActionKind;
-    private float bufferedActionTtl;
     private string? combatDataWarning;
 
     public GameForm()
@@ -227,8 +227,7 @@ internal sealed class GameForm : Form
         nextUpgradeAt = 8;
         upgradesTaken = 0;
         bossSpawned = false;
-        bufferedActionKind = null;
-        bufferedActionTtl = 0;
+        actionBuffer.Clear();
         maxAura = selectedCharacter == 3 ? 120 : selectedCharacter == 1 ? 110 : 100;
         aura = selectedCharacter == 3 ? 80 : 58;
         damageBonus = 0;
@@ -281,11 +280,7 @@ internal sealed class GameForm : Form
             dt = 0;
         }
         aura = Math.Min(maxAura, aura + rawDt * (3.2f + auraRegenBonus));
-        if (bufferedActionTtl > 0)
-        {
-            bufferedActionTtl = Math.Max(0, bufferedActionTtl - rawDt);
-            if (bufferedActionTtl <= 0) bufferedActionKind = null;
-        }
+        actionBuffer.Tick(rawDt);
         UpdateCooldowns(rawDt);
 
         UpdatePlayer(dt);
@@ -335,13 +330,15 @@ internal sealed class GameForm : Form
         if (move.Length > 0.01f)
         {
             if (player.Action == null) player.Facing = MathF.Atan2(move.Y, move.X);
-            var desired = move * (player.Speed * (1 + speedBonus) * actionMoveScale);
-            player.Velocity = player.Velocity * 0.25f + desired * 0.75f;
         }
-        else
+        var maxSpeed = player.Speed * (1 + speedBonus) * actionMoveScale;
+        var kinematics = PlayerKinematics with
         {
-            player.Velocity *= player.Action == null ? 0.82f : 0.74f;
-        }
+            Acceleration = PlayerKinematics.Acceleration * (player.Action == null ? 1f : 0.62f),
+            Deceleration = PlayerKinematics.Deceleration * (player.Action == null ? 1f : 1.32f),
+            TurnAcceleration = PlayerKinematics.TurnAcceleration * (player.Action == null ? 1f : 0.72f)
+        };
+        player.Velocity = KinematicMotor.StepVelocity(player.Velocity, move, maxSpeed, dt, kinematics);
 
         if (player.Action is { } action)
         {
@@ -454,17 +451,13 @@ internal sealed class GameForm : Form
 
     private void BufferAction(string kind)
     {
-        bufferedActionKind = kind;
-        bufferedActionTtl = 0.16f;
+        actionBuffer.Push(kind);
     }
 
     private void TryConsumeBufferedAction()
     {
-        if (bufferedActionKind == null || bufferedActionTtl <= 0) return;
-        if (player.Action is { } action && !action.CanCancel) return;
-        var kind = bufferedActionKind;
-        bufferedActionKind = null;
-        bufferedActionTtl = 0;
+        var windowOpen = player.Action == null || player.Action.CanCancel;
+        if (!actionBuffer.TryConsume(windowOpen, out var kind)) return;
         if (kind == "dash") StartDash();
         else StartAttack(kind);
     }
